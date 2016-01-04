@@ -6,11 +6,7 @@ router.get('/express', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-var links = [
-  { title: "fake link 1", url: "fake.url.1"},
-  { title: "fake link 2", url: "fake.url.2"},
-  { title: "fake link 3", url: "fake.url.3"}
-];
+var links = [];
 
 router.get('/api/links', function(req, res, next) {
   res.json({ links: links });
@@ -18,6 +14,7 @@ router.get('/api/links', function(req, res, next) {
 
 router.post('/api/links', function(req, res, next) {
   var newLink = req.body;
+  newLink.id = Date.now();
   links.push(newLink);
   res.json(newLink);
 });

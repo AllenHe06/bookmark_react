@@ -1,11 +1,17 @@
 import React from "react";
-
+import $ from "jquery";
 import List from "./List";
 
 class AppController extends React.Component {
   constructor(props) {
     super(props);
     this.state = { bookmarks: []};
+  }
+  componentDidMount() {
+    $.get('./api/links')
+    .success(data => {
+      this.setState({ bookmarks: data.links });
+    })
   }
   render() {
     return(

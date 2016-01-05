@@ -1,8 +1,8 @@
 import React from "react";
-import $ from "jquery";
 
 import List from "./List";
 import Form from "./Form";
+import LinkActions from "../actions/LinkActions";
 
 class AppController extends React.Component {
   constructor(props) {
@@ -10,16 +10,18 @@ class AppController extends React.Component {
     this.state = { bookmarks: []};
   }
   insertBookmark(newBookmark) {
-    $.post("/api/links", newBookmark)
-    .success(data => {
-      this.setState({ bookmarks: this.state.bookmarks.concat(data)});
-    });
+    // $.post("/api/links", newBookmark)
+    // .success(data => {
+    //   this.setState({ bookmarks: this.state.bookmarks.concat(data)});
+    // });
+
   }
   componentDidMount() {
-    $.get('./api/links')
-    .success(data => {
-      this.setState({ bookmarks: data.links });
-    })
+    // $.get('./api/links')
+    // .success(data => {
+    //   this.setState({ bookmarks: data.links });
+    // });
+    LinkActions.getAllbookmarks();
   }
   render() {
     return(

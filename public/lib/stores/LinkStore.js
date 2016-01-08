@@ -25,7 +25,12 @@ class LinkStore extends EventEmitter {
     });
   }
   getAll() {
-    return _links;
+    return _links.map(link => {
+      link.url = link.url.startsWith("http") ? link.url :
+                 `http://${link.url}`;
+      link.safe = link.url.startsWith("https");
+      return link;
+    });
   }
   startListening(callback) {
     this.on("CHANGE", callback);

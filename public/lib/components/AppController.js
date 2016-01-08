@@ -31,6 +31,9 @@ class AppController extends React.Component {
       <div>
         <h2>Bookmarks!</h2>
         <List list={this.state.bookmarks}/>
+        <div>
+          Total: {this.state.bookmarks.length}
+        </div>
         <Form />
       </div>
     )

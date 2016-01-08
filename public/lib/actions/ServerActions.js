@@ -8,6 +8,12 @@ let ServerAction = {
       actionType: ActionTypes.RECEIVE_LINKS,
       links
     });
+  },
+  receiveOneLink(link) {
+    AppDispatcher.dispatch({
+      actionType: ActionTypes.RECEIVE_ONE_LINK,
+      link
+    });
   }
 }
 

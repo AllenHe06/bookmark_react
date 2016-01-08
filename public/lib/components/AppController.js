@@ -15,13 +15,6 @@ class AppController extends React.Component {
     this.state = _getAppState();
     this._onChange = this._onChange.bind(this);
   }
-  insertBookmark(newBookmark) {
-    // $.post("/api/links", newBookmark)
-    // .success(data => {
-    //   this.setState({ bookmarks: this.state.bookmarks.concat(data)});
-    // });
-
-  }
   componentDidMount() {
     LinkActions.getAllbookmarks();
     LinkStore.startListening(this._onChange);
@@ -38,7 +31,7 @@ class AppController extends React.Component {
       <div>
         <h2>Bookmarks!</h2>
         <List list={this.state.bookmarks}/>
-        <Form addBookmark={this.insertBookmark.bind(this)} />
+        <Form />
       </div>
     )
   }

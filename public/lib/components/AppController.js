@@ -3,11 +3,17 @@ import React from "react";
 import List from "./List";
 import Form from "./Form";
 import LinkActions from "../actions/LinkActions";
+import LinkStore from "../stores/LinkStore";
+
+let _getAppState = () => {
+  return { bookmarks: LinkStore.getAll() };
+}
 
 class AppController extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { bookmarks: []};
+    this.state = _getAppState();
+    this._onChange = this._onChange.bind(this);
   }
   insertBookmark(newBookmark) {
     // $.post("/api/links", newBookmark)
@@ -17,11 +23,15 @@ class AppController extends React.Component {
 
   }
   componentDidMount() {
-    // $.get('./api/links')
-    // .success(data => {
-    //   this.setState({ bookmarks: data.links });
-    // });
     LinkActions.getAllbookmarks();
+    LinkStore.startListening(this._onChange);
+  }
+  componentWillUnmount() {
+    LinkStore.stopListening(this._onChange);
+  }
+  _onChange() {
+    console.log("5. Store has emitted the change event!");
+    this.setState(_getAppState());
   }
   render() {
     return(

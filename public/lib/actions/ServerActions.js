@@ -1,7 +1,13 @@
+import AppDispatcher from "../AppDispatcher";
+import {ActionTypes} from "../Constants";
+
 let ServerAction = {
   receiveLinks(links) {
     console.log("3.In ServerAction, receive all links!", links);
-    // tell everyone about it.
+    AppDispatcher.dispatch({
+      actionType: ActionTypes.RECEIVE_LINKS,
+      links
+    });
   }
 }
 
